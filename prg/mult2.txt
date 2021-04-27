@@ -1,0 +1,16 @@
+## Voir: http://zanotti.univ-tln.fr/turing/ProduitPar2.tur
+
+q1:
+	b => GOTO qF
+	0 => RIGHT => GOTO q2
+	1 => RIGHT => GOTO q2
+
+q2:
+	0 => RIGHT
+	1 => RIGHT
+	b => WRITE 0 => LEFT => GOTO q3
+
+q3:
+	0 => LEFT
+	1 => LEFT
+	b => RIGHT => GOTO qF

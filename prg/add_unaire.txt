@@ -1,0 +1,9 @@
+q1:
+	b => RIGHT
+	0 => GOTO q2
+	1 => GOTO q2
+
+q2:
+	0 => WRITE 1 => RIGHT
+	1 => RIGHT
+	b => GOTO qF
