@@ -28,6 +28,14 @@ class Options:
             print('Paramètre `%s` chargé avec pour valeur `%s`.' % (name, value))
         return self
 
+    def __getitem__(self, name: str):
+        return self.get(name)
+
+    def set_dont_erase(self, name: str, value: str) -> Options:
+        if not self.has(name):
+            self.set(name, value)
+        return self
+
     def get(self, name: str) -> str:
         return self.opts.get(name)
 
