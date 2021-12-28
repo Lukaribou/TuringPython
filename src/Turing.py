@@ -27,8 +27,13 @@ class Turing:
             self.options.parse(self.file_content)
 
         # modif en fonction des options
+
+        # START
         if self.options.get("START") == "RIGHT":
             self.ptr_bride = len(self.bride) - 1  # => MSB
+
+        # FINAL_STATE
+        self.options.set_dont_erase("FINAL_STATE", "qf")
 
         # parse les instructions
 
@@ -56,7 +61,7 @@ class Turing:
                                                            instruction.split(Statements.NEXT_INSTRUCTION.value)[1:]]
                 fn['val_used'].append(instruction[0])  # instructions pour valeur x définies
 
-                if f'{Statements.GOTO.value} qf' in instruction:
+                if f'{Statements.GOTO.value} {self.options["FINAL_STATE"]}' in instruction:
                     fn['qF'] = True  # l'état final semble être atteignable
             else:
                 fn['name'] = instruction  # change l'état en définition
@@ -98,7 +103,7 @@ class Turing:
                         self.bride[self.ptr_bride] = orders[1]
                     case Statements.GOTO:
                         to_go = orders[1]
-                        if to_go == 'qf':
+                        if to_go == self.options['FINAL_STATE']:
                             qF_reached = True
                             break  # au cas où il y ait des instructions derrière le GOTO qF
                         elif to_go in self.states.keys():

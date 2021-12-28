@@ -1,8 +1,9 @@
 ## https://tutorialspoint.dev/algorithm/bitwise-algorithms/add-1-to-a-given-number
 
 -- START = RIGHT
+-- FINAL_STATE = final
 
 q1:
 	1 => WRITE 0 => LEFT
-	0 => WRITE 1 => GOTO qF
-	b => WRITE 1 => GOTO qF
+	0 => WRITE 1 => GOTO final
+	b => WRITE 1 => GOTO final
