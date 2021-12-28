@@ -69,7 +69,7 @@ class Turing:
 
         def log(op: str):
             print('Opération: %s\t| Ruban: `%s`\t| Pointeur ruban: %d'
-                  % (op, self.p_bride(), self.ptr_bride))
+                  % (op, self.print_bride(), self.ptr_bride))
 
         while not qF_reached:
             for instr in current_state[self.bride[self.ptr_bride]]:  # valeur pointée par le curseur
@@ -110,9 +110,9 @@ class Turing:
                 if record_mvt:
                     self.record.put(command, self.bride, self.ptr_bride, current_state)
 
-        return self.p_bride()
+        return self.print_bride()
 
-    def p_bride(self):
+    def print_bride(self):
         return ''.join(self.bride).replace('b', ' ').strip()
 
     @staticmethod
