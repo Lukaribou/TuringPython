@@ -34,7 +34,10 @@ class Turing:
 
         lines = re.compile("\n+(\w+)+:").split(self.file_content)  # https://regex101.com/r/urESAl/1
         lines = [s.strip() for s in '\n'.join(lines).splitlines()]  #
-        lines = list(filter(lambda s: not s.startswith(Statements.COMMENT.value) and s != '',
+        lines = list(filter(lambda s:
+                            not s.startswith(Statements.COMMENT.value)
+                            and not s.startswith(Statements.OPTION.value)
+                            and s != '',
                             lines))  # enlève les options et les vides
 
         fn = {"name": None, "val_used": [], "qF": False}
@@ -65,6 +68,7 @@ class Turing:
 
     def run(self, record_mvt=False) -> str:
         current_state = self.states[list(self.states.keys())[0]]  # premier état défini
+        name_current_state = list(self.states.keys())[0]
         qF_reached = False
 
         def log(op: str):
@@ -99,6 +103,7 @@ class Turing:
                             break  # au cas où il y ait des instructions derrière le GOTO qF
                         elif to_go in self.states.keys():
                             current_state = self.states[to_go]
+                            name_current_state = to_go
                         else:
                             raise KeyError("L'état `%s` n'existe pas." % to_go)
                     case _:
@@ -108,7 +113,7 @@ class Turing:
                     log(instr)
 
                 if record_mvt:
-                    self.record.put(command, self.bride, self.ptr_bride, current_state)
+                    self.record.put(command, self.bride, self.ptr_bride, name_current_state)
 
         return self.print_bride()
 

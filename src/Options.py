@@ -14,11 +14,11 @@ class Options:
     def parse(self, file_content: str):
         for index, line in enumerate(file_content.splitlines()):
             line = line.strip()  # retire tous les espaces devant et derrière
-            if line.startswith(Statements.COMMENT.value) and not line.startswith('##'):
-                if ('=' not in line) and self.debug:  # si pas d'assignation dans la ligne
+            if line.startswith(Statements.OPTION.value):
+                if (Statements.OPTION_ASSIGN.value not in line) and self.debug:  # si pas d'assignation dans la ligne
                     raise ValueError("La valeur de l'option ligne `%d` est introuvable." % (index + 1))
-                line = line.replace('#', '')  # retire les #
-                params: List[str] = list(map(lambda s: s.strip(), line.split('=')))  # prend les valeurs et les trim
+                line = line.replace(Statements.OPTION.value, '')  # retire les #
+                params: List[str] = list(map(lambda s: s.strip(), line.split(Statements.OPTION_ASSIGN.value)))  # prend les valeurs et les trim
                 self.set(params[0], params[1])
         self.parsed = True
 

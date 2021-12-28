@@ -3,6 +3,8 @@ from enum import Enum
 
 class Statements(Enum):
     COMMENT = '#'
+    OPTION = '--'
+    OPTION_ASSIGN = '='
     NEXT_INSTRUCTION = '=>'
     RIGHT_SHIFT = 'right'
     LEFT_SHIFT = 'left'

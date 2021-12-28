@@ -1,6 +1,6 @@
 ## https://tutorialspoint.dev/algorithm/bitwise-algorithms/add-1-to-a-given-number
 
-# START = RIGHT
+-- START = RIGHT
 
 q1:
 	1 => WRITE 0 => LEFT
