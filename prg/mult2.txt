@@ -1,4 +1,4 @@
-## Voir: http://zanotti.univ-tln.fr/turing/ProduitPar2.tur
+# Voir: http://zanotti.univ-tln.fr/turing/ProduitPar2.tur
 
 q1:
 	b => GOTO qF

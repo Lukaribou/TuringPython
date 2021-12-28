@@ -1,6 +1,4 @@
-from typing import Dict
-
-from Turing import Turing
+from src.Turing import Turing
 
 if __name__ == '__main__':
     from sys import argv
