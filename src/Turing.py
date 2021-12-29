@@ -72,8 +72,15 @@ class Turing:
             raise ValueError("L'état `qF` (état final) n'est jamais atteint.")
 
     def run(self, record_mvt=False) -> str:
-        current_state = self.states[list(self.states.keys())[0]]  # premier état défini
-        name_current_state = list(self.states.keys())[0]
+        # option START_STATE
+        name_current_state = self.options['START_STATE']
+        if name_current_state is None:
+            name_current_state = list(self.states.keys())[0]
+        current_state = self.states.get(name_current_state)
+
+        if current_state is None:
+            raise ValueError("L'état de départ défini dans l'option START_STATE n'existe pas.")
+
         qF_reached = False
 
         def log(op: str):
