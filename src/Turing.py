@@ -6,7 +6,7 @@ from src.Options import Options
 import re
 
 from src.Recorder import Recorder
-from src.utils import Statements
+from src.utils import Statements, ACCEPTED_FILES_EXTENSIONS
 
 
 class Turing:
@@ -134,6 +134,12 @@ class Turing:
 
     @staticmethod
     def from_file(file_path: str, bride='', debug=False, auto_parse=True) -> Turing:
+        for extension in ACCEPTED_FILES_EXTENSIONS:
+            if file_path.endswith(f'.{extension}'):
+                break
+        else:
+            raise ValueError(f'Extension du fichier non valide. [{", ".join(ACCEPTED_FILES_EXTENSIONS)}] sont acceptees.')
+
         f = open(file_path, 'r')
         content = f.read()
         f.close()
