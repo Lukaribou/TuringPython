@@ -13,4 +13,4 @@ class Statements(Enum):
 
     @classmethod
     def has_value(cls, value: str):
-        return value.upper() in cls._value2member_map_
+        return value.lower() in cls._value2member_map_
