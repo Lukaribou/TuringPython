@@ -1,5 +1,7 @@
 from enum import Enum
 
+ACCEPTED_FILES_EXTENSIONS = ['txt', 'turing']
+
 
 class Statements(Enum):
     COMMENT = '#'
