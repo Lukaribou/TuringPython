@@ -3,7 +3,8 @@
 -- START = RIGHT
 -- FINAL_STATE = final
 
-q1:
+q1 {
 	1 => WRITE 0 => LEFT
 	0 => WRITE 1 => GOTO final
 	b => WRITE 1 => GOTO final
+}
