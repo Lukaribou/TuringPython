@@ -7,3 +7,6 @@ class BaseInstruction:
 
     def __repr__(self):
         return self.__str__()
+
+    def compute(self, machine) -> None:
+        raise NotImplementedError
