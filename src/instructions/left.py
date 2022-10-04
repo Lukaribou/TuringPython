@@ -10,3 +10,7 @@ class LeftInstruction(BaseInstruction):
         if machine.get_ptr_bride() == -1:
             machine.insert_front_bride()
             machine.set_ptr_bride(0)
+
+    @staticmethod
+    def compile() -> str:
+        raise NotImplementedError

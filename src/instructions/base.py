@@ -10,3 +10,7 @@ class BaseInstruction:
 
     def compute(self, machine) -> None:
         raise NotImplementedError
+
+    @staticmethod
+    def compile() -> str:
+        raise NotImplementedError

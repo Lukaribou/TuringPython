@@ -17,3 +17,7 @@ class GotoInstruction(BaseInstruction):
             machine.set_state(self.__next_state)
         else:
             raise KeyError("State `%s` does not exists." % self.__next_state)
+
+    @staticmethod
+    def compile() -> str:
+        raise NotImplementedError
