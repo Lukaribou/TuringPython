@@ -62,11 +62,18 @@ class Turing:
         return self
 
     def exists_state(self, state: str) -> bool:
-        return state in self.__states.keys()
+        return state == self.__options.get('FINAL_STATE') or state in self.__states.keys()
+
+    def go_to_final_state(self) -> Turing:
+        self.__current_state_name = self.__options.get('FINAL_STATE')
+        return self
 
     def set_state(self, new_state: str) -> Turing:
-        self.__current_state = self.__states[new_state]
-        self.__current_state_name = new_state
+        if new_state == self.__options.get('FINAL_STATE'):
+            self.go_to_final_state()
+        else:
+            self.__current_state = self.__states[new_state]
+            self.__current_state_name = new_state
         return self
 
     def parse(self, parse_options=True) -> None:
@@ -106,12 +113,13 @@ class Turing:
 
         self.run()
 
-    def run(self, record_mvt=False) -> str:
+    def run(self) -> str:
         # option START_STATE
         self.__current_state_name = self.__options['START_STATE'] or list(self.__states.keys())[0]
-        self.__current_state = self.__states.get(self.__options['START_STATE'])
+        self.__current_state = self.__states[self.__current_state_name]
 
-        self.__current_state.execute(self)
+        while self.__current_state_name != self.__options.get('FINAL_STATE'):
+            self.__current_state.execute(self)
 
         return self.print_bride()
 

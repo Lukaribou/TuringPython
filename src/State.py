@@ -29,9 +29,12 @@ class State:
     def __str__(self):
         return f"State({self.__name})"
 
-    def execute(self, machine: Turing) -> None:
+    def execute(self, machine: Turing) -> bool:
         if machine.get_bride_at_ptr() not in self:
             raise ValueError(f"No instructions for bride's value `{machine.get_bride_at_ptr()}` in state `{self.__name}`")
         else:
             for instruction in self.__instructions[machine.get_bride_at_ptr()]:
                 instruction.compute(machine)
+                if isinstance(instruction, GotoInstruction):
+                    return True
+        return False
