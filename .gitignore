@@ -2,3 +2,4 @@
 /.idea
 /prg/.idea
 **/__pycache__
+*.exe

@@ -52,7 +52,7 @@ class Turing:
         return self
 
     def is_ptr_at_end(self) -> bool:
-        return self.__ptr_bride == len(self.__bride)
+        return self.__ptr_bride == len(self.__bride) + 1
 
     def get_bride_at_ptr(self) -> str:
         return self.__bride[self.__ptr_bride]
