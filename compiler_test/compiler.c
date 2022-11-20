@@ -24,7 +24,7 @@ void bride_extend_if_necessary(Machine* m, unsigned int size)
         m->bride_info->allocated = m->bride_info->allocated << 1;
         changed = 1;
     }
-    if (changed)
+    if (changed == 1)
     {
         // doubler mémoire allouée
         m->bride = realloc(m->bride, sizeof(char) * m->bride_info->allocated);
@@ -36,11 +36,10 @@ void bride_insert_at_position(Machine* m, unsigned int pos, char to_insert)
 {
     bride_extend_if_necessary(m, pos);
 
-    if (m->bride_info->len > 0)
+    if (m->bride_info->len > 0 || pos != m->bride_info->len)
     {
-        for (int i = m->bride_info->len; i >= pos; i--)
+        for (unsigned int i = m->bride_info->len; i >= pos; i--)
         {
-            printf("%d", i);
             m->bride[i + 1] = m->bride[i];
         }
     }
@@ -51,10 +50,9 @@ void bride_insert_at_position(Machine* m, unsigned int pos, char to_insert)
 void instruction_left(Machine* m)
 {
     m->ptr_bride -= 1;
-
     if (m->ptr_bride == -1)
     {
-        bride_insert_at_position(m, 0, 'b');
+        bride_insert_at_position(m, -1, 'b');
         m->ptr_bride = 0;
     }
 }
