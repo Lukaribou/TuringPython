@@ -10,6 +10,5 @@ class RightInstruction(BaseInstruction):
         if machine.is_ptr_at_end():
             machine.insert_back_bride()
 
-    @staticmethod
-    def compile() -> str:
-        raise NotImplementedError
+    def get_compile_instruction_name(self) -> str:
+        return 'instruction_right'

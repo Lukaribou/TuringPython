@@ -11,6 +11,5 @@ class LeftInstruction(BaseInstruction):
             machine.insert_front_bride()
             machine.set_ptr_bride(0)
 
-    @staticmethod
-    def compile() -> str:
-        raise NotImplementedError
+    def get_compile_instruction_name(self) -> str:
+        return 'instruction_left'

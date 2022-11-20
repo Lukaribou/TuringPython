@@ -18,6 +18,5 @@ class GotoInstruction(BaseInstruction):
         else:
             raise KeyError("State `%s` does not exists." % self.__next_state)
 
-    @staticmethod
-    def compile() -> str:
-        raise NotImplementedError
+    def get_compile_instruction_name(self) -> str:
+        return 'instruction_goto'

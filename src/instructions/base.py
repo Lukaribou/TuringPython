@@ -11,6 +11,5 @@ class BaseInstruction:
     def compute(self, machine) -> None:
         raise NotImplementedError
 
-    @staticmethod
-    def compile() -> str:
+    def get_compile_instruction_name(self) -> str:
         raise NotImplementedError

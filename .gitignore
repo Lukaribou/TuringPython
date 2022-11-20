@@ -3,3 +3,4 @@
 /prg/.idea
 **/__pycache__
 *.exe
+**/.vscode

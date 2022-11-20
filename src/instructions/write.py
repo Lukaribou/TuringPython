@@ -12,6 +12,5 @@ class WriteInstruction(BaseInstruction):
     def compute(self, machine) -> None:
         machine.set_bride_piece(self.__to_write)
 
-    @staticmethod
-    def compile() -> str:
-        raise NotImplementedError
+    def get_compile_instruction_name(self) -> str:
+        return 'instruction_write'

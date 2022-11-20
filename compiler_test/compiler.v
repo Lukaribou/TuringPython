@@ -6,6 +6,10 @@ mut:
 	bride	  []string
 }
 
+fn init_machine() Machine {
+	return Machine{0, []}
+}
+
 fn instruction_left(mut m &Machine) {
 	if m.ptr_bride == 0 {
 		m.bride.prepend('b')
@@ -25,10 +29,6 @@ fn instruction_write(mut m &Machine, to_write string) {
 
 fn instruction_goto(mut m &Machine) {
 	// TODO:
-}
-
-fn init_machine() Machine {
-	return Machine{0, []}
 }
 
 fn print_bride(m &Machine) {
