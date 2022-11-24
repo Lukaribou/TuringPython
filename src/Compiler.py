@@ -45,7 +45,7 @@ def state_make_function(state: State) -> str:
         cond_string = ""
 
         # "else if"
-        if if_count > 0 and if_count != len(state.get_instructions()):
+        if if_count > 0:
             cond_string += 'else '
 
         cond_string += 'if m.bride[m.ptr_bride] == "' + cond_value + '" {\n'
