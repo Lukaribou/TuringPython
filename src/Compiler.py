@@ -1,6 +1,9 @@
 from typing import Dict
 
 from src.State import State
+from src.instructions.base import BaseInstruction
+from src.instructions.goto import GotoInstruction
+from src.instructions.write import WriteInstruction
 
 
 def base_code() -> str:
@@ -37,6 +40,19 @@ def base_code() -> str:
     """
 
 
+def get_instruction_written(instr: BaseInstruction) -> str:
+    as_string = 'return ' if isinstance(instr, GotoInstruction) else ''
+
+    as_string += f'{instr.get_compile_instruction_name()}(mut m'
+
+    if isinstance(instr, (WriteInstruction, GotoInstruction)):
+        as_string += f', "{instr.get_right_part()}"'
+
+    as_string += ')'
+
+    return as_string
+
+
 def state_make_function(state: State) -> str:
     s = "fn state_" + state.get_name() + "(mut m &Machine) {\n"
 
@@ -49,7 +65,7 @@ def state_make_function(state: State) -> str:
             cond_string += 'else '
 
         cond_string += 'if m.bride[m.ptr_bride] == "' + cond_value + '" {\n'
-        cond_string += '\n  '.join(map(lambda instr: f'{instr.get_compile_instruction_name()}(mut m)', instrs))
+        cond_string += '\n'.join(map(get_instruction_written, instrs))
         cond_string += '\n}'
 
         s += cond_string + "\n"
@@ -78,4 +94,4 @@ class Compiler:
 
 
 if __name__ == '__main__':
-    print(state_make_function(State('test', ['0 => WRITE 1 => LEFT', '1 => LEFT => LEFT'])))
+    print(state_make_function(State('test', ['0 => WRITE 1 => LEFT', '1 => LEFT => LEFT', '2 => LEFT => GOTO eq1'])))

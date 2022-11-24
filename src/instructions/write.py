@@ -12,5 +12,8 @@ class WriteInstruction(BaseInstruction):
     def compute(self, machine) -> None:
         machine.set_bride_piece(self.__to_write)
 
+    def get_right_part(self) -> str:
+        return self.__to_write
+
     def get_compile_instruction_name(self) -> str:
         return 'instruction_write'

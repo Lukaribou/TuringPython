@@ -12,6 +12,9 @@ class GotoInstruction(BaseInstruction):
     def get_next_state_name(self) -> str:
         return self.__next_state
 
+    def get_right_part(self) -> str:
+        return self.__next_state
+
     def compute(self, machine) -> None:
         if machine.exists_state(self.__next_state):
             machine.set_state(self.__next_state)
