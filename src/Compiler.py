@@ -53,6 +53,7 @@ def state_make_function(state: State) -> str:
         cond_string += '\n}'
 
         s += cond_string + "\n"
+        if_count += 1
 
     return s + "}"
 
